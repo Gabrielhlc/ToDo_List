@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     header: {
         height: "21.3%",
-        width: "100%",
+        // width: "100%",
 
         alignItems: "center",
         justifyContent: "center",
@@ -27,8 +27,10 @@ export const styles = StyleSheet.create({
         fontWeight: "400",
         fontSize: 16,
 
+        color: '#F2F2F2',
         backgroundColor: '#262626',
         borderRadius: 6,
+
     },
     formButton: {
         width: 52,
