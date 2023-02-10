@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Task } from "../Task";
 import { styles } from "./styles";
 
 interface HeaderProps {
-    handleAddTask: (task: string) => void;
+    handleAddTask: (task: Task) => void;
 }
 
 export function Header({ handleAddTask }: HeaderProps) {
-    const [task, setTask] = useState<string>('');
+    const [taskText, setTaskText] = useState<string>('');
 
 
     return (
@@ -21,13 +22,18 @@ export function Header({ handleAddTask }: HeaderProps) {
                     style={styles.input}
                     placeholder="Adicione uma nova tarefa"
                     placeholderTextColor="#808080"
-                    onChangeText={setTask}
-                    value={task}
+                    maxLength={50}
+                    onChangeText={setTaskText}
+                    value={taskText}
                 />
 
                 <TouchableOpacity style={styles.formButton} onPress={() => {
+                    const task = {
+                        text: taskText,
+                        isChecked: false
+                    } as Task
                     handleAddTask(task)
-                    setTask('')
+                    setTaskText('')
                 }}>
                     <Text style={styles.formButtonText}>
                         +

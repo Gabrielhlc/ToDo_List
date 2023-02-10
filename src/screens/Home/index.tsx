@@ -1,26 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
-import Checkbox from 'expo-checkbox';
 import { EmptyList } from "../../components/EmptyList";
 import { Header } from "../../components/Header";
 
 import { styles } from "./styles";
+import { Task } from "../../components/Task";
 
 export default function Home() {
-    const [tasks, setTasks] = useState<string[]>([]);
-    const [toggleCheckBox, setToggleCheckBox] = useState(false);
+    const [tasks, setTasks] = useState<Task[]>([]);
+    const [createdTasks, setCreatedTasks] = useState(0);
+    const [doneTasks, setDoneTasks] = useState(0);
 
 
+    // useEffect(() => {
+    //     let count = 0
+    //     tasks.map(task => {
+    //         if (task.isChecked) {
+    //             count += 1
+    //         }
+    //     })
+    //     setDoneTasks(count)
+    // }, [tasks])
 
-    function handleAddTask(task: string) {
-        if (tasks.includes(task)) {
-            return Alert.alert('Tarefa já existe', 'Esta tarefa já existe na lista')
-        }
+
+    function handleAddTask(newTask: Task) {
+        tasks.map(task => {
+            if (task.text === newTask.text) {
+                return Alert.alert('Tarefa já existe', 'Esta tarefa já existe na lista')
+            }
+        })
         setTasks(state => (
-            [...state, task]
+            [...state, newTask]
+        ))
+        setCreatedTasks(state => (
+            state + 1
         ))
     }
-    function handleRemoveTask(selectedTask: string) {
+    function handleRemoveTask(selectedTask: Task) {
         Alert.alert('Remover', `Deseja remover esta task?`, [
             {
                 text: 'Não',
@@ -28,7 +44,10 @@ export default function Home() {
             },
             {
                 text: 'Sim',
-                onPress: () => setTasks(state => state.filter(task => task !== selectedTask))
+                onPress: () => {
+                    setTasks(state => state.filter(task => task.text !== selectedTask.text))
+                    setCreatedTasks(state => state - 1)
+                }
             },
 
         ])
@@ -41,30 +60,21 @@ export default function Home() {
             <View style={styles.listInfo}>
                 <View style={styles.infoHeaders}>
                     <Text style={styles.infoHeaderCreated}>Criadas</Text>
-                    <Text style={styles.infoHeaderNumber}>0</Text>
+                    <Text style={styles.infoHeaderNumber}>{createdTasks}</Text>
                 </View>
                 <View style={styles.infoHeaders}>
                     <Text style={styles.infoHeaderDone}>Concluídas</Text>
-                    <Text style={styles.infoHeaderNumber}>0</Text>
+                    <Text style={styles.infoHeaderNumber}>{doneTasks}</Text>
                 </View>
             </View>
 
             <FlatList
                 data={tasks}
                 renderItem={({ item }) => (
-                    <View style={styles.taskContainer}>
-                        <Checkbox
-                            disabled={false}
-                            style={styles.taskSwitch}
-                            value={toggleCheckBox}
-                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                        />
-                        <Text style={styles.taskText}>{item}</Text>
-                        <TouchableOpacity style={styles.taskRemove} onPress={() => handleRemoveTask(item)}>
-
-                            <Image source={require('../../../assets/trash.png')} />
-                        </TouchableOpacity>
-                    </View>
+                    <Task
+                        task={item}
+                        removeTask={() => handleRemoveTask(item)}
+                    />
                 )}
                 ListEmptyComponent={() => (
                     <EmptyList />

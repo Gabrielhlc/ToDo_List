@@ -48,29 +48,4 @@ export const styles = StyleSheet.create({
         backgroundColor: '#333',
         borderRadius: 999,
     },
-    taskContainer: {
-        width: '87.2%',
-
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginBottom: 8,
-
-        backgroundColor: '#262626',
-        borderRadius: 8,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-
-    },
-    taskSwitch: {
-        marginLeft: 8,
-    },
-    taskText: {
-        lineHeight: 14,
-        color: '#F2F2F2',
-
-    },
-    taskRemove: {
-        marginRight: 8,
-    },
 })  
