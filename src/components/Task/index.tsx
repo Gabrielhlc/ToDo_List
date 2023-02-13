@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import Checkbox from "expo-checkbox";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
@@ -13,7 +13,7 @@ export type Task = {
 interface TaskProps {
     task: Task
     removeTask: (taskText: string) => void
-    // doneTask: Dispatch<SetStateAction<number>>
+    doneTask: Dispatch<SetStateAction<number>>
 }
 
 export function Task({ task, removeTask }: TaskProps) {

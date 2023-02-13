@@ -5,6 +5,7 @@ import { Header } from "../../components/Header";
 
 import { styles } from "./styles";
 import { Task } from "../../components/Task";
+import { ListInfo } from "../../components/ListInfo";
 
 export default function Home() {
     const [tasks, setTasks] = useState<Task[]>([]);
@@ -57,16 +58,10 @@ export default function Home() {
         <View style={styles.container}>
             <Header handleAddTask={handleAddTask} />
 
-            <View style={styles.listInfo}>
-                <View style={styles.infoHeaders}>
-                    <Text style={styles.infoHeaderCreated}>Criadas</Text>
-                    <Text style={styles.infoHeaderNumber}>{createdTasks}</Text>
-                </View>
-                <View style={styles.infoHeaders}>
-                    <Text style={styles.infoHeaderDone}>Concluídas</Text>
-                    <Text style={styles.infoHeaderNumber}>{doneTasks}</Text>
-                </View>
-            </View>
+            <ListInfo
+                createdTasks={createdTasks}
+                doneTasks={doneTasks}
+            />
 
             <FlatList
                 data={tasks}
@@ -74,6 +69,7 @@ export default function Home() {
                     <Task
                         task={item}
                         removeTask={() => handleRemoveTask(item)}
+                        doneTask={setDoneTasks}
                     />
                 )}
                 ListEmptyComponent={() => (
