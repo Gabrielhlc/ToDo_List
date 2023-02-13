@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
         marginRight: 8,
 
         color: '#4EA8DE',
-        fontWeight: "700",
+        fontFamily: 'Inter_700Bold',
         fontSize: 14,
         lineHeight: 17,
     },
@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
         marginRight: 8,
 
         color: '#8284FA',
-        fontWeight: "700",
+        fontFamily: 'Inter_700Bold',
         fontSize: 14,
         lineHeight: 17,
     },
@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 2,
         paddingHorizontal: 8,
 
-        fontWeight: "700",
+        fontFamily: 'Inter_700Bold',
         fontSize: 12,
         lineHeight: 15,
         color: '#D9D9D9',

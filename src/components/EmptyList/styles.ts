@@ -16,12 +16,12 @@ export const styles = StyleSheet.create({
     title: {
         marginTop: 16,
         color: '#808080',
-        fontWeight: "700",
+        fontFamily: 'Inter_700Bold',
         fontSize: 14,
         lineHeight: 19.6,
     },
     subtitle: {
-        fontWeight: "400",
+        fontFamily: 'Inter_400Regular',
         color: '#808080',
     },
 })

@@ -24,9 +24,11 @@ export const styles = StyleSheet.create({
         borderColor: '#1E6F9F',
     },
     taskText: {
-        color: '#F2F2F2',
         maxWidth: 235,
         flex: 1,
+
+        fontFamily: 'Inter_400Regular',
+        color: '#F2F2F2',
 
     },
     taskRemove: {

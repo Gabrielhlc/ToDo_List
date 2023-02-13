@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
 
         flex: 1,
         alignItems: "center",
-        fontWeight: "400",
+        fontFamily: 'Inter_400Regular',
         fontSize: 16,
 
         color: '#F2F2F2',
